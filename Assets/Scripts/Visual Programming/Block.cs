@@ -5,11 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Block : MonoBehaviour, IDragHandler
 {
-    private List<Block> connections;
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private OutputConnection[] output;
 
     // Перемещение блока
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(eventData.position);
+        (transform as RectTransform).anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 }

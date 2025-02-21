@@ -1,25 +1,53 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class OutputConnection : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private LineRenderer connectionPrefab;
-    private LineRenderer currentConnetion;
+    public Block Block { get => block; }
+
+    [SerializeField] private Canvas canvas;
+    [SerializeField] private Block block;
+    [SerializeField] private LineRenderer connectionLinePrefab;
+
+    private List<InputConnection> connections = new();
+    private List<LineRenderer> lines = new();
+
+    private LineRenderer currentLine;
+    private Vector2 delta;
+
+    void Update()
+    {
+        for (int i = 0; i < lines.Count; i++) 
+        {            
+            lines[i].SetPositions(new[] {transform.position, connections[i].transform.position});
+        }
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {        
-        currentConnetion = Instantiate(connectionPrefab, transform);
+        delta = Vector2.zero;
+        currentLine = Instantiate(connectionLinePrefab, transform);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        var pos = Camera.main.ScreenToWorldPoint(eventData.position) - transform.position;
-        var scale = transform.lossyScale;
-        currentConnetion.SetPositions(new[] {Vector3.zero, new Vector3(pos.x / scale.x, pos.y / scale.y, 0)});
+        delta += eventData.delta / canvas.scaleFactor;
+        currentLine.SetPositions(new[] {Vector3.zero, (Vector3)delta});
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("End Drag");
+        currentLine.useWorldSpace = true;
+        lines.Add(currentLine);
+        currentLine = null;
+    }
+
+    /// <summary>
+    /// Добавить соединение к блоку
+    /// </summary>
+    public void Connect(InputConnection input)
+    {
+        connections.Add(input);
     }
 }
