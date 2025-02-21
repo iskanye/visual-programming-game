@@ -10,6 +10,6 @@ public class Block : MonoBehaviour, IDragHandler
     // Перемещение блока
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.pointerCurrentRaycast.worldPosition;
+        transform.position = (Vector2)Camera.main.ScreenToWorldPoint(eventData.position);
     }
 }
