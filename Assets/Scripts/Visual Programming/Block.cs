@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 public class Block : MonoBehaviour, IDragHandler
 {
     [SerializeField] private Canvas canvas;
-    [SerializeField] private OutputConnection[] output;
-    [SerializeField] private InputConnection[] input;
+    [SerializeField] protected OutputConnection[] output;
+    [SerializeField] protected InputConnection[] input;
 
     void Update() 
     {
