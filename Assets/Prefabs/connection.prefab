@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 464594538066436044}
   - component: {fileID: 8004047716459370055}
   - component: {fileID: 2456360254140880597}
+  - component: {fileID: 3856606189697303876}
   m_Layer: 5
   m_Name: connection
   m_TagString: Untagged
@@ -138,7 +139,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!225 &2456360254140880597
@@ -153,3 +154,16 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &3856606189697303876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9212358881333069840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6388aec07d53d004cb33aceca1528617, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineRenderer: {fileID: 8004047716459370055}

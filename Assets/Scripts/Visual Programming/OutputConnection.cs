@@ -2,52 +2,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OutputConnection : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public Block Block { get => block; }
 
     [SerializeField] private Canvas canvas;
     [SerializeField] private Block block;
-    [SerializeField] private LineRenderer connectionLinePrefab;
+    [SerializeField] private ConnectionLine connectionLinePrefab;
 
-    private List<InputConnection> connections = new();
-    private List<LineRenderer> lines = new();
+    private List<ConnectionLine> connections = new();
 
-    private LineRenderer currentLine;
-    private Vector2 delta;
+    private ConnectionLine currentLine;
 
-    void Update()
+    public void Output(object data)
     {
-        for (int i = 0; i < lines.Count; i++) 
-        {            
-            lines[i].SetPositions(new[] {transform.position, connections[i].transform.position});
-        }
+        connections.ForEach(i => i.TransferData(data));
     }
 
     public void OnBeginDrag(PointerEventData eventData)
-    {        
-        delta = Vector2.zero;
-        currentLine = Instantiate(connectionLinePrefab, transform);
-    }
-
-    public void OnDrag(PointerEventData eventData)
     {
-        delta += eventData.delta / canvas.scaleFactor;
-        currentLine.SetPositions(new[] {Vector3.zero, (Vector3)delta});
+        currentLine = Instantiate(connectionLinePrefab, transform);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        currentLine.useWorldSpace = true;
-        lines.Add(currentLine);
+        if (eventData.pointerCurrentRaycast.gameObject && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out InputConnection input))
+        {
+            connections.Add(currentLine);
+            currentLine.SetConnection(input);
+        }
+        else 
+        {
+            Destroy(currentLine.gameObject);
+        }
+
         currentLine = null;
     }
 
-    /// <summary>
-    /// Добавить соединение к блоку
-    /// </summary>
-    public void Connect(InputConnection input)
+    public void OnDrag(PointerEventData eventData)
     {
-        connections.Add(input);
+        // Просто чтобы Block не перехватил OnDrag
     }
 }

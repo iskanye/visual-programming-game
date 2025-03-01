@@ -177,6 +177,8 @@ MonoBehaviour:
   canvas: {fileID: 1813714363}
   output:
   - {fileID: 2138095676}
+  input:
+  - {fileID: 1111627624}
 --- !u!114 &135125161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,6 +408,7 @@ MonoBehaviour:
   canvas: {fileID: 1813714363}
   output:
   - {fileID: 1288931828}
+  input: []
 --- !u!114 &886795088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -664,7 +667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1813714363}
   block: {fileID: 886795087}
-  connectionLinePrefab: {fileID: 8004047716459370055, guid: b7192614d55b69941bc23a86f6158b21, type: 3}
+  connectionLinePrefab: {fileID: 3856606189697303876, guid: b7192614d55b69941bc23a86f6158b21, type: 3}
 --- !u!114 &1288931829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -858,7 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 1813714363}
   block: {fileID: 135125160}
-  connectionLinePrefab: {fileID: 8004047716459370055, guid: b7192614d55b69941bc23a86f6158b21, type: 3}
+  connectionLinePrefab: {fileID: 3856606189697303876, guid: b7192614d55b69941bc23a86f6158b21, type: 3}
 --- !u!114 &2138095677
 MonoBehaviour:
   m_ObjectHideFlags: 0
