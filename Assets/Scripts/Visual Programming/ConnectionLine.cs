@@ -1,32 +1,50 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class ConnectionLine : MonoBehaviour
+public class ConnectionLine : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private LineRenderer lineRenderer;
 
     private InputConnection inputConnection;
+    private new PolygonCollider2D collider; //new чтобы vs code не жаловался
+
+    void Awake() 
+    {
+        collider = gameObject.GetComponent<PolygonCollider2D>();
+    }
 
     void Update()
     {
-        if (inputConnection)
+        Vector2 start = transform.position; // Обязательно указываю Vector2 чтобы координата z обнулялась
+        Vector2 end = inputConnection ? inputConnection.transform.position : Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
+
+        lineRenderer.SetPositions(new[] {(Vector3)start, (Vector3)end}); 
+
+        if (inputConnection)  
         {
-            lineRenderer.SetPositions(new[] {transform.position, inputConnection.transform.position});
-        }
-        else 
-        {
-            lineRenderer.SetPositions(new[] {transform.position, Camera.main.ScreenToWorldPoint(Mouse.current.position.value)});
+            var scaledLine = (end - start) / transform.lossyScale;
+            var e = .5f * lineRenderer.widthMultiplier * Vector2.Perpendicular(end - start).normalized / transform.lossyScale; 
+            collider.SetPath(0, new Vector2[] {e, scaledLine + e, scaledLine - e, -e});
         }
     }
 
     public void SetConnection(InputConnection inputConnection) 
     {
         this.inputConnection = inputConnection;
+        inputConnection.Connect();
     }
 
     public void TransferData(object data) 
     {
         inputConnection.Data = data;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        inputConnection.RemoveConnection();
+        Destroy(gameObject);
     }
 }

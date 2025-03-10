@@ -16,9 +16,21 @@ public class InputConnection : MonoBehaviour
             ready = true;
         }
     }
+    public bool Connected { get => connected; }
 
     [SerializeField] private Block block;
 
     private object data;
     private bool ready;
+    private bool connected;
+
+    public void Connect()
+    {
+        connected = true;
+    }
+
+    public void RemoveConnection()
+    {
+        connected = false;
+    }
 }
