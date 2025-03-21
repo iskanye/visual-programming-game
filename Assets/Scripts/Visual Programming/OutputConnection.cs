@@ -6,13 +6,17 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 {
     public Block Block { get => block; }
 
-    [SerializeField] private Canvas canvas;
     [SerializeField] private Block block;
     [SerializeField] private ConnectionLine connectionLinePrefab;
 
     private List<ConnectionLine> connections = new();
 
     private ConnectionLine currentLine;
+
+    public void RemoveConnection(ConnectionLine line)
+    {
+        connections.Remove(line);
+    }
 
     public void Output(object data)
     {
@@ -30,7 +34,7 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
             && input.Block != block && !input.Connected)
         {
             connections.Add(currentLine);
-            currentLine.SetConnection(input);
+            currentLine.SetConnection(this, input);
         }
         else 
         {

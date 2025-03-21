@@ -8,6 +8,7 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private LineRenderer lineRenderer;
 
+    private OutputConnection outputConnection;
     private InputConnection inputConnection;
     private new PolygonCollider2D collider; //new чтобы vs code не жаловался
 
@@ -31,8 +32,9 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void SetConnection(InputConnection inputConnection) 
+    public void SetConnection(OutputConnection outputConnection, InputConnection inputConnection) 
     {
+        this.outputConnection = outputConnection;
         this.inputConnection = inputConnection;
         inputConnection.Connect(this);
     }
@@ -44,6 +46,7 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        outputConnection.RemoveConnection(this);
         inputConnection.RemoveConnection();
     }
 }

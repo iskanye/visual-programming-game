@@ -6,19 +6,22 @@ using UnityEngine.EventSystems;
 
 public class Block : MonoBehaviour, IDragHandler
 {
-    [SerializeField] private Blueprint blueprint;
+    [SerializeField] protected Blueprint blueprint;
     [SerializeField] protected OutputConnection[] output;
     [SerializeField] protected InputConnection[] input;
 
     void Update() 
     {
-        if (input.All(i => i.Ready)) 
+        if (input.Length != 0 && input.All(i => i.Ready)) 
         {
-            Process(input.Select(i => i.Data).ToArray());
+            StartCoroutine(Process(input.Select(i => i.Data).ToArray()));
         }
     }
 
-    public virtual void Process(object[] data) { }
+    public virtual IEnumerator Process(object[] data) 
+    { 
+        yield return new WaitForSeconds(blueprint.Delay);
+    }
 
     // Перемещение блока
     public void OnDrag(PointerEventData eventData)

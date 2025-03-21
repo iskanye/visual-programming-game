@@ -9,7 +9,11 @@ public class InputConnection : MonoBehaviour
     public bool Ready { get => ready; }
     public object Data 
     { 
-        get => data; 
+        get
+        {
+            ready = false;
+            return data;
+        }
         set 
         {
             data = value;
@@ -34,6 +38,6 @@ public class InputConnection : MonoBehaviour
     public void RemoveConnection()
     {
         connected = false;
-        Destroy(line);
+        Destroy(line.gameObject);
     }
 }
