@@ -23,14 +23,17 @@ public class InputConnection : MonoBehaviour
     private object data;
     private bool ready;
     private bool connected;
+    private ConnectionLine line;
 
-    public void Connect()
+    public void Connect(ConnectionLine line)
     {
         connected = true;
+        this.line = line;
     }
 
     public void RemoveConnection()
     {
         connected = false;
+        Destroy(line);
     }
 }

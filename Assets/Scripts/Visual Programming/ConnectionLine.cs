@@ -34,7 +34,7 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
     public void SetConnection(InputConnection inputConnection) 
     {
         this.inputConnection = inputConnection;
-        inputConnection.Connect();
+        inputConnection.Connect(this);
     }
 
     public void TransferData(object data) 
@@ -45,6 +45,5 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         inputConnection.RemoveConnection();
-        Destroy(gameObject);
     }
 }

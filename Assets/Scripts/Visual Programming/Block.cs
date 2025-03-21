@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Block : MonoBehaviour, IDragHandler
 {
-    [SerializeField] private Canvas canvas;
+    [SerializeField] private Blueprint blueprint;
     [SerializeField] protected OutputConnection[] output;
     [SerializeField] protected InputConnection[] input;
 
@@ -23,6 +23,6 @@ public class Block : MonoBehaviour, IDragHandler
     // Перемещение блока
     public void OnDrag(PointerEventData eventData)
     {
-        (transform as RectTransform).anchoredPosition += eventData.delta / canvas.scaleFactor;
+        (transform as RectTransform).anchoredPosition += eventData.delta / blueprint.ScaleFactor;
     }
 }
