@@ -22,7 +22,11 @@ public class Block : MonoBehaviour, IDragHandler
     {
         foreach (var i in input) 
         {
-            i.ConnectedLine.Destroy();
+            i.Destroy();
+        }
+        foreach (var i in output) 
+        {
+            i.Destroy();
         }
     }
 

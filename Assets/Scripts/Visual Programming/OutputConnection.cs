@@ -17,6 +17,11 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         connections.Remove(line);
     }
 
+    public void Destroy()
+    {
+        connections.ForEach(i => i.Destroy());
+    }
+
     public void Output(object data)
     {
         connections.ForEach(i => i.TransferData(data));
