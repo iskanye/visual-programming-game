@@ -1,10 +1,10 @@
 using System.Collections;
 
-public class StartBlock : Block
+public class EndBlock : Block
 {
     public override IEnumerator Process(object[] data)
     {
-        output[0].Output(null);
+        blueprint.EndExecuting();
         yield break;
     }
 }

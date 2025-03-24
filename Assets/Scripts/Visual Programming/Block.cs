@@ -18,6 +18,14 @@ public class Block : MonoBehaviour, IDragHandler
         }
     }
 
+    void OnDestroy()
+    {
+        foreach (var i in input) 
+        {
+            i.ConnectedLine.Destroy();
+        }
+    }
+
     public virtual IEnumerator Process(object[] data) 
     { 
         yield return new WaitForSeconds(blueprint.Delay);

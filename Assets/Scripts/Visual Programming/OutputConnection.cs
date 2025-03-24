@@ -10,7 +10,6 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     [SerializeField] private ConnectionLine connectionLinePrefab;
 
     private List<ConnectionLine> connections = new();
-
     private ConnectionLine currentLine;
 
     public void RemoveConnection(ConnectionLine line)

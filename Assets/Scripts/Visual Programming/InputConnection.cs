@@ -21,6 +21,7 @@ public class InputConnection : MonoBehaviour
         }
     }
     public bool Connected { get => connected; }
+    public ConnectionLine ConnectedLine { get => line; }
 
     [SerializeField] private Block block;
 
@@ -38,6 +39,5 @@ public class InputConnection : MonoBehaviour
     public void RemoveConnection()
     {
         connected = false;
-        Destroy(line.gameObject);
     }
 }

@@ -11,8 +11,20 @@ public class Blueprint : MonoBehaviour
     [SerializeField] private Robot robot;    
     [SerializeField] private float delay = .25f;
 
+    private bool isExecuting;
+
     public void StartBlueprint()
     {
+        if (isExecuting) 
+        {
+            return;
+        }
+        isExecuting = true;
         StartCoroutine(startBlock.Process(null));
+    }
+
+    public void EndExecuting() 
+    {
+        isExecuting = false;
     }
 }
