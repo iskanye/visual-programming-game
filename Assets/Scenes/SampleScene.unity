@@ -1909,7 +1909,7 @@ MonoBehaviour:
   output:
   - {fileID: 3713267509648665097}
   input: []
-  constant: 0
+  constant: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
