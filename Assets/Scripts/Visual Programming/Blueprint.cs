@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Blueprint : MonoBehaviour
@@ -10,6 +11,7 @@ public class Blueprint : MonoBehaviour
     [SerializeField] private StartBlock startBlock;
     [SerializeField] private Robot robot;    
     [SerializeField] private float delay = .25f;
+    [SerializeField] private Block[] blocks;
 
     private bool isExecuting;
 
@@ -20,6 +22,11 @@ public class Blueprint : MonoBehaviour
             return;
         }
         isExecuting = true;
+        
+        foreach (var i in blocks.Where(i => i is ConstantBlock)) 
+        {
+            StartCoroutine(i.Process(null));
+        }
         StartCoroutine(startBlock.Process(null));
     }
 

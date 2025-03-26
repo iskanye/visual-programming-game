@@ -18,7 +18,7 @@ public class Block : MonoBehaviour, IDragHandler
         }
     }
 
-    void OnDestroy()
+    public void Destroy()
     {
         foreach (var i in input) 
         {
@@ -28,6 +28,7 @@ public class Block : MonoBehaviour, IDragHandler
         {
             i.Destroy();
         }
+        Destroy(gameObject);
     }
 
     public virtual IEnumerator Process(object[] data) 
