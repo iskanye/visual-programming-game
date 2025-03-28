@@ -227,9 +227,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprint: {fileID: 0}
   output:
-  - {fileID: 0}
+  - {fileID: 2764705907915391923}
   input:
-  - {fileID: 0}
+  - {fileID: 3536289189760782227}
   direction: {x: 0, y: 0, z: 0}
 --- !u!1001 &731193895555517169
 PrefabInstance:
@@ -332,6 +332,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65a95a9849553a7469de34b7938273ac, type: 3}
+--- !u!114 &2764705907915391923 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3205311249604528450, guid: 65a95a9849553a7469de34b7938273ac, type: 3}
+  m_PrefabInstance: {fileID: 731193895555517169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cc227c3d83fb746aa964aaddb13d2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8177821139032213655 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8888078191465808486, guid: 65a95a9849553a7469de34b7938273ac, type: 3}
@@ -438,6 +449,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd5c15b91461f014595f1a1650f0aebe, type: 3}
+--- !u!114 &3536289189760782227 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4468698636678392907, guid: dd5c15b91461f014595f1a1650f0aebe, type: 3}
+  m_PrefabInstance: {fileID: 1087458729466667992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cceffad2b2ac0b4c9a2c582a25e5518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &4568023804991278896 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3491288623226727656, guid: dd5c15b91461f014595f1a1650f0aebe, type: 3}
