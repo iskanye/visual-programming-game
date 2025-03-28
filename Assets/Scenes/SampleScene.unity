@@ -1489,14 +1489,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Start Block
       objectReference: {fileID: 0}
-    - target: {fileID: 4943092767375862240, guid: 921818e4cea53b04bb5a5cac095eff68, type: 3}
-      propertyPath: blueprint
-      value: 
-      objectReference: {fileID: 1680257351}
-    - target: {fileID: 8940592666162121021, guid: 921818e4cea53b04bb5a5cac095eff68, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1813714363}
     - target: {fileID: 8971353766731915329, guid: 921818e4cea53b04bb5a5cac095eff68, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
