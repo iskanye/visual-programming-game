@@ -4,7 +4,14 @@ using UnityEngine.EventSystems;
 
 public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    /// <summary>
+    /// Блок данного выхода
+    /// </summary>
     public Block Block { get => block; }
+    /// <summary>
+    /// Состояние готовности данного выхода
+    /// </summary>
+    public bool Ready { get => connections.Count != 0;}
 
     [SerializeField] private Block block;
     [SerializeField] private ConnectionLine connectionLinePrefab;
@@ -12,16 +19,27 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     private List<ConnectionLine> connections = new();
     private ConnectionLine currentLine;
 
+    /// <summary>
+    /// Удалить конкретное соединение данного выхода
+    /// </summary>
+    /// <param name="line">Объект линии соединения</param>
     public void RemoveConnection(ConnectionLine line)
     {
         connections.Remove(line);
     }
 
+    /// <summary>
+    /// Уничножить выход
+    /// </summary>
     public void Destroy()
     {
         connections.ForEach(i => i.Destroy());
     }
 
+    /// <summary>
+    /// Подать данные на данный выход
+    /// </summary>
+    /// <param name="data">Данные</param>
     public void Output(object data)
     {
         connections.ForEach(i => i.TransferData(data));

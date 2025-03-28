@@ -32,6 +32,11 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    /// <summary>
+    /// Указать для данной линии её соединения
+    /// </summary>
+    /// <param name="outputConnection">Выходное соединение</param>
+    /// <param name="inputConnection">Входное соединение</param>
     public void SetConnection(OutputConnection outputConnection, InputConnection inputConnection) 
     {
         this.outputConnection = outputConnection;
@@ -49,6 +54,9 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
         Destroy();
     }
 
+    /// <summary>
+    /// Уничтожить линию
+    /// </summary>
     public void Destroy()
     {
         outputConnection.RemoveConnection(this);
