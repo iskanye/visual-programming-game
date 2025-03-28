@@ -51,7 +51,7 @@ public class Block : MonoBehaviour, IDragHandler
         yield return new WaitForSeconds(blueprint.Delay);
     }
 
-    /// Перемещение блока
+    // Перемещение блока
     public void OnDrag(PointerEventData eventData)
     {
         (transform as RectTransform).anchoredPosition += eventData.delta / blueprint.ScaleFactor;
