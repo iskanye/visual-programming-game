@@ -44,11 +44,6 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
         inputConnection.Connect(this);
     }
 
-    public void TransferData(object data) 
-    {
-        inputConnection.Data = data;
-    }
-
     public void OnPointerClick(PointerEventData eventData)
     {
         Destroy();

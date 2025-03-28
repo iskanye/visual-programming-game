@@ -16,7 +16,7 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     [SerializeField] private Block block;
     [SerializeField] private ConnectionLine connectionLinePrefab;
 
-    private List<ConnectionLine> connections = new();
+    private Dictionary<ConnectionLine, InputConnection> connections = new();
     private ConnectionLine currentLine;
 
     /// <summary>
@@ -33,7 +33,10 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     /// </summary>
     public void Destroy()
     {
-        connections.ForEach(i => i.Destroy());
+        foreach (var i in connections.Keys) 
+        {
+            i.Destroy();
+        }
     }
 
     /// <summary>
@@ -42,7 +45,10 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     /// <param name="data">Данные</param>
     public void Output(object data)
     {
-        connections.ForEach(i => i.TransferData(data));
+        foreach (var i in connections.Values)
+        {
+            i.Data = data;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -55,7 +61,7 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
         if (eventData.pointerCurrentRaycast.gameObject && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out InputConnection input)
             && input.Block != block && !input.Connected)
         {
-            connections.Add(currentLine);
+            connections.Add(currentLine, input);
             currentLine.SetConnection(this, input);
         }
         else 
