@@ -8,7 +8,7 @@ public class MoveBlock : Block
     public override IEnumerator Process(object[] data)
     {
         blueprint.Robot.Move(direction);
-        yield return base.Process(data);
+        yield return base.Process(null);
         output[0].Output(null);
     }
 }
