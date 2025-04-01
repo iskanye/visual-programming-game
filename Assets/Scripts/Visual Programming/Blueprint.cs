@@ -55,7 +55,7 @@ public class Blueprint : MonoBehaviour
     /// Вывести сообщение на экран
     /// </summary>
     /// <param name="message">Текст сообщения</param>
-    public void Message(string message) 
+    public void Message(string message, GameObject sender) 
     {
         IEnumerator _Message() 
         {
@@ -70,5 +70,5 @@ public class Blueprint : MonoBehaviour
     /// Вывести сообщение об ошибке
     /// </summary>
     /// <param name="message">Описание ошибки</param>
-    public void ErrorMessage(string message) => Message("Ошибка: " + message);
+    public void ErrorMessage(string message, GameObject sender) => Message("Ошибка: " + message, sender);
 }
