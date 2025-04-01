@@ -55,7 +55,7 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
     public void Destroy()
     {
         outputConnection.RemoveConnection(this);
-        inputConnection.RemoveConnection();
+        inputConnection.RemoveConnection(this);
         Destroy(gameObject);        
     }
 }

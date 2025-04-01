@@ -59,7 +59,7 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         if (eventData.pointerCurrentRaycast.gameObject && eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out InputConnection input)
-            && input.Block != block && !input.Connected)
+            && input.Block != block)
         {
             connections.Add(currentLine, input);
             currentLine.SetConnection(this, input);

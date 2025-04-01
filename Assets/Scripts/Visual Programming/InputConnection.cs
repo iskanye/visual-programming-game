@@ -39,7 +39,7 @@ public class InputConnection : MonoBehaviour
     private object data;
     private bool ready;
     private bool connected;
-    private ConnectionLine line;
+    private List<ConnectionLine> lines = new();
 
     /// <summary>
     /// Подсоединить блок к данному входу
@@ -48,15 +48,20 @@ public class InputConnection : MonoBehaviour
     public void Connect(ConnectionLine line)
     {
         connected = true;
-        this.line = line;
+        lines.Add(line);
     }
 
     /// <summary>
     /// Удалить соединение
     /// </summary>
-    public void RemoveConnection()
+    public void RemoveConnection(ConnectionLine line)
     {
-        connected = false;
+        lines.Remove(line);
+        
+        if (lines.Count == 0) 
+        {
+            connected = false;
+        }
     }
 
     /// <summary>
@@ -64,6 +69,6 @@ public class InputConnection : MonoBehaviour
     /// </summary>
     public void Destroy()
     {
-        line.Destroy();
+        lines.ForEach(i => i.Destroy());
     }
 }
