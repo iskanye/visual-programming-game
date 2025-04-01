@@ -91,7 +91,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f5cc0c0b1d34d41bbaa1468d656d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blueprint: {fileID: 0}
   output:
   - {fileID: 3357807631166667503}
   input: []
@@ -266,7 +265,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2530421537848822353
 GameObject:
   m_ObjectHideFlags: 0
