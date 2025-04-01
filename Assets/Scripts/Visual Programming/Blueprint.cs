@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class Blueprint : MonoBehaviour
 {
+    /// <summary>
+    /// Текущий экземпляр схемы
+    /// </summary>
+    public static Blueprint Current { get; private set; }
     public float Delay { get => delay; }
     public float ScaleFactor { get => canvas.scaleFactor; }
     public Robot Robot { get => robot; }
@@ -14,6 +18,11 @@ public class Blueprint : MonoBehaviour
 
     private Block[] blocks;
     private bool isExecuting;
+
+    void Awake()
+    {
+        Current = this;
+    }
 
     public void StartBlueprint()
     {

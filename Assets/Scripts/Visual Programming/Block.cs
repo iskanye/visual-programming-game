@@ -14,7 +14,6 @@ public class Block : MonoBehaviour, IDragHandler
     /// </summary>
     public bool Ready { get => output.All(i => i.Ready) && input.All(i => i.Connected); }
 
-    [SerializeField] protected Blueprint blueprint;
     [SerializeField] protected OutputConnection[] output;
     [SerializeField] protected InputConnection[] input;
 
@@ -48,12 +47,12 @@ public class Block : MonoBehaviour, IDragHandler
     /// <param name="data">Входные данные</param>
     public virtual IEnumerator Process(object[] data) 
     { 
-        yield return new WaitForSeconds(blueprint.Delay);
+        yield return new WaitForSeconds(Blueprint.Current.Delay);
     }
 
     // Перемещение блока
     public void OnDrag(PointerEventData eventData)
     {
-        (transform as RectTransform).anchoredPosition += eventData.delta / blueprint.ScaleFactor;
+        (transform as RectTransform).anchoredPosition += eventData.delta / Blueprint.Current.ScaleFactor;
     }
 }

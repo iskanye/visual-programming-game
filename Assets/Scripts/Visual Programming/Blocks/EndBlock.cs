@@ -4,7 +4,7 @@ public class EndBlock : Block
 {
     public override IEnumerator Process(object[] data)
     {
-        blueprint.EndExecuting();
+        Blueprint.Current.EndExecuting();
         yield break;
     }
 }
