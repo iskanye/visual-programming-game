@@ -32,10 +32,16 @@ public class Blueprint : MonoBehaviour
     {
         if (isExecuting) 
         {
+            ErrorMessage("Схема уже выполняется", null);
             return;
         }
 
         blocks = GetComponentsInChildren<Block>();
+        if (blocks.Any(i => !i.Ready)) 
+        {
+            ErrorMessage("Не все блоки соединены", null);
+            return;
+        }
 
         isExecuting = true;
         
