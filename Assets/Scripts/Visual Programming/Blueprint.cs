@@ -1,5 +1,8 @@
 using System.Linq;
+using System.Collections;
 using UnityEngine;
+using TMPro;
+using UnityEngine.Rendering;
 
 public class Blueprint : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class Blueprint : MonoBehaviour
     [SerializeField] private StartBlock startBlock;
     [SerializeField] private Robot robot;    
     [SerializeField] private float delay = .25f;
+    [SerializeField] private TMP_Text messageText;
 
     private Block[] blocks;
     private bool isExecuting;
@@ -46,4 +50,25 @@ public class Blueprint : MonoBehaviour
     {
         isExecuting = false;
     }
+
+    /// <summary>
+    /// Вывести сообщение на экран
+    /// </summary>
+    /// <param name="message">Текст сообщения</param>
+    public void Message(string message) 
+    {
+        IEnumerator _Message() 
+        {
+            messageText.text = message;
+            yield return new WaitForSeconds(5f);
+            messageText.text = "";
+        }
+        StartCoroutine(_Message());
+    }
+
+    /// <summary>
+    /// Вывести сообщение об ошибке
+    /// </summary>
+    /// <param name="message">Описание ошибки</param>
+    public void ErrorMessage(string message) => Message("Ошибка: " + message);
 }
