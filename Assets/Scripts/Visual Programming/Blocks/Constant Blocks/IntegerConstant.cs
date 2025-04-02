@@ -1,6 +1,6 @@
 using System.Collections;
 
-public class IntegerConstant : ConstantBlock
+public class IntegerConstant : VariableBlock
 {
     protected override object Variable => constant;     
     

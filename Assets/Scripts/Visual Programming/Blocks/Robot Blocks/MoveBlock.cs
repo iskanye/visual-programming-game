@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MoveBlock : Block
 {
-    [SerializeField] private Vector3Int direction;
+    [SerializeField] private Vector3 direction;
 
     public override IEnumerator Process(object[] data)
     {
