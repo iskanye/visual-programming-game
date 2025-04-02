@@ -8,20 +8,23 @@ public class Robot : MonoBehaviour
     { 
         get 
         {
-            var collider = Physics2D.OverlapCircle(transform.position, 1);
+            var collider = Physics2D.OverlapCircle(transform.position, seeRange, obstacleLayer);
             if (collider)
             {
                 var dir = (collider.transform.position - transform.position).normalized;
-                return collider && Mathf.Acos(Vector2.Dot(dir, direction)) * Mathf.Rad2Deg < 45;
+                return Mathf.Acos(Vector2.Dot(dir, direction)) * Mathf.Rad2Deg < seeAngle;
             }
             return false;
         }
     }
 
     [SerializeField] private float speed;
+    [SerializeField] private float seeRange = 1;
+    [SerializeField] [Range(0, 180)] private float seeAngle = 90;
+    [SerializeField] private LayerMask obstacleLayer;
 
     private bool moving;
-    private Vector2 direction;
+    private Vector2 direction = Vector2.up;
 
     public void Move(Vector3 dir)
     {    

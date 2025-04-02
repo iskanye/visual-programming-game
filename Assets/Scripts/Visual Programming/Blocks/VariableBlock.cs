@@ -7,17 +7,17 @@ public class VariableBlock : Block
     /// <summary>
     /// Доступные типы для блоков переменных
     /// </summary>
-    public static readonly Type[] AllowedTypes = 
+    public static Type[] AllowedTypes 
     {
-        typeof(bool), typeof(int), typeof(float), typeof(Vector2)
-    };
+        get => new Type[] {typeof(bool), typeof(int), typeof(float), typeof(Vector2)};
+    }
 
     protected virtual object Variable { get; }
 
     private Coroutine coroutine;
 
     /// <summary>
-    /// Начать передавать данные константы
+    /// Начать передавать данные переменной
     /// </summary>
     public void StartEmitting() 
     {
@@ -25,7 +25,7 @@ public class VariableBlock : Block
     }
 
     /// <summary>
-    /// Перестать передавать данные константы
+    /// Перестать передавать данные переменной
     /// </summary>
     public void StopEmitting()
     {
