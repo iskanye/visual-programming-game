@@ -1,8 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class ConstantBlock : Block
 {
+    /// <summary>
+    /// Доступные типы для блоков переменных
+    /// </summary>
+    public static readonly Type[] AllowedTypes = 
+    {
+        typeof(bool), typeof(int), typeof(float), typeof(Vector2)
+    };
+
     protected virtual object Variable { get; }
 
     private Coroutine coroutine;

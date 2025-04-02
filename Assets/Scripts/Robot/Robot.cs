@@ -8,9 +8,13 @@ public class Robot : MonoBehaviour
     { 
         get 
         {
-            var c = Physics2D.OverlapCircle(transform.position, 1);
-            var dir = (c.transform.position - transform.position).normalized;
-            return c && Mathf.Acos(Vector2.Dot(dir, direction)) * Mathf.Rad2Deg < 45;
+            var collider = Physics2D.OverlapCircle(transform.position, 1);
+            if (collider)
+            {
+                var dir = (collider.transform.position - transform.position).normalized;
+                return collider && Mathf.Acos(Vector2.Dot(dir, direction)) * Mathf.Rad2Deg < 45;
+            }
+            return false;
         }
     }
 
