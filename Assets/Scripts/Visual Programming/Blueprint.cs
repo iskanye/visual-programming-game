@@ -2,7 +2,6 @@ using System.Linq;
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Rendering;
 
 public class Blueprint : MonoBehaviour
 {
@@ -47,13 +46,17 @@ public class Blueprint : MonoBehaviour
         
         foreach (var i in blocks.Where(i => i is ConstantBlock)) 
         {
-            StartCoroutine(i.Process(null));
+            (i as ConstantBlock).StartEmitting();
         }
         StartCoroutine(startBlock.Process(null));
     }
 
     public void EndExecuting() 
     {
+        foreach (var i in blocks.Where(i => i is ConstantBlock)) 
+        {
+            (i as ConstantBlock).StopEmitting();
+        }
         isExecuting = false;
     }
 
@@ -66,7 +69,7 @@ public class Blueprint : MonoBehaviour
         IEnumerator _Message() 
         {
             messageText.text = message;
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(3f);
             messageText.text = "";
         }
         StartCoroutine(_Message());
