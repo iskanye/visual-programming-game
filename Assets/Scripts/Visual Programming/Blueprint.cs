@@ -27,6 +27,9 @@ public class Blueprint : MonoBehaviour
         Current = this;
     }
 
+    /// <summary>
+    /// Запустить схему
+    /// </summary>
     public void StartBlueprint()
     {
         if (isExecuting) 
@@ -51,6 +54,9 @@ public class Blueprint : MonoBehaviour
         StartCoroutine(startBlock.Process(null));
     }
 
+    /// <summary>
+    /// Сигнализировать о завершении выполнения схемы
+    /// </summary>
     public void EndExecuting() 
     {
         foreach (var i in blocks.Where(i => i is ConstantBlock)) 
