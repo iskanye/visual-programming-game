@@ -47,9 +47,9 @@ public class Blueprint : MonoBehaviour
 
         isExecuting = true;
         
-        foreach (var i in blocks.Where(i => i is ConstantBlock)) 
+        foreach (var i in blocks.Where(i => i is VariableBlock)) 
         {
-            (i as ConstantBlock).StartEmitting();
+            (i as VariableBlock).StartEmitting();
         }
         StartCoroutine(startBlock.Process(null));
     }
@@ -59,9 +59,9 @@ public class Blueprint : MonoBehaviour
     /// </summary>
     public void EndExecuting() 
     {
-        foreach (var i in blocks.Where(i => i is ConstantBlock)) 
+        foreach (var i in blocks.Where(i => i is VariableBlock)) 
         {
-            (i as ConstantBlock).StopEmitting();
+            (i as VariableBlock).StopEmitting();
         }
         isExecuting = false;
     }

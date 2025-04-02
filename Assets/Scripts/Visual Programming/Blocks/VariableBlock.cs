@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System;
 
-public class ConstantBlock : Block
+public class VariableBlock : Block
 {
     /// <summary>
     /// Доступные типы для блоков переменных

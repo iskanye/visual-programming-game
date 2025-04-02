@@ -1,6 +1,6 @@
 using System.Collections;
 
-public class BooleanBlock : ConstantBlock
+public class BooleanBlock : VariableBlock
 {
     protected override object Variable => constant;     
     

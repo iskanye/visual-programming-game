@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using TMPro;
 
-public class RobotsPropertiesBlock : ConstantBlock
+public class RobotsPropertiesBlock : VariableBlock
 {
     protected override object Variable 
     { 
@@ -25,7 +25,6 @@ public class RobotsPropertiesBlock : ConstantBlock
         foreach (var i in robot.GetProperties().Where(i => AllowedTypes.Contains(i.PropertyType))) 
         {            
             properties.Add(i.Name);
-            Debug.Log(i.Name);
         }
         dropdown.AddOptions(properties);
     }
