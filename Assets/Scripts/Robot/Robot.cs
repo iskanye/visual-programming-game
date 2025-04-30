@@ -8,19 +8,12 @@ public class Robot : MonoBehaviour
     { 
         get 
         {
-            var collider = Physics2D.OverlapCircle(transform.position, seeRange, obstacleLayer);
-            if (collider)
-            {
-                var dir = (collider.transform.position - transform.position).normalized;
-                return Mathf.Acos(Vector2.Dot(dir, direction)) * Mathf.Rad2Deg < seeAngle;
-            }
-            return false;
+            var collider = Physics2D.OverlapCircle((Vector2)transform.position + .5f * direction, .4f, obstacleLayer);
+            return collider;
         }
     }
 
     [SerializeField] private float speed;
-    [SerializeField] private float seeRange = 1;
-    [SerializeField] [Range(0, 180)] private float seeAngle = 90;
     [SerializeField] private LayerMask obstacleLayer;
 
     private bool moving;
@@ -28,12 +21,12 @@ public class Robot : MonoBehaviour
 
     public bool Move(Vector3 dir)
     {    
+        direction = dir.normalized;
+
         if (WallInFront) 
         {
             return false;
         }
-        
-        direction = dir.normalized;
 
         IEnumerator _Move()
         {
