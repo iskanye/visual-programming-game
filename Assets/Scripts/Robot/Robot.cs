@@ -26,8 +26,13 @@ public class Robot : MonoBehaviour
     private bool moving;
     private Vector2 direction = Vector2.up;
 
-    public void Move(Vector3 dir)
+    public bool Move(Vector3 dir)
     {    
+        if (WallInFront) 
+        {
+            return false;
+        }
+        
         direction = dir.normalized;
 
         IEnumerator _Move()
@@ -45,5 +50,6 @@ public class Robot : MonoBehaviour
         }
 
         StartCoroutine(_Move());
+        return true;
     }
 }

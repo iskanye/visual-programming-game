@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,7 +20,7 @@ public class Block : MonoBehaviour, IDragHandler
     {
         if (input.Length != 0 && input.All(i => i.Ready)) 
         {
-            StartCoroutine(Process(input.Select(i => i.Data).ToArray()));
+            Blueprint.Current.StartCoroutine(Process(input.Select(i => i.Data).ToArray()));
         }
     }
 

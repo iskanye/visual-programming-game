@@ -604,7 +604,7 @@ Transform:
   m_GameObject: {fileID: 282802289}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1013,7 +1013,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753f43473716f494e873b48030eb822a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
+  seeRange: 1
+  seeAngle: 90
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 23
@@ -1890,7 +1892,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: 400, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1593383611
 MonoBehaviour:
@@ -1939,8 +1941,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2069,7 +2071,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1593383610}
   - {fileID: 82646674}
   - {fileID: 886795086}
   - {fileID: 44608002718055095}
@@ -2077,6 +2078,7 @@ RectTransform:
   - {fileID: 7386106987208057615}
   - {fileID: 135125159}
   - {fileID: 3871310484069549615}
+  - {fileID: 1593383610}
   m_Father: {fileID: 1813714364}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
