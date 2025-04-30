@@ -1,11 +1,10 @@
 using System.Collections;
-using UnityEngine;
 
 public class MoveBlock : Block
 {
     public override IEnumerator Process(object[] data)
     {
-        if (!Blueprint.Current.Robot.Move()) 
+        if (!Blueprint.Current.Robot.Move())
         {
             Blueprint.Current.ErrorMessage("Невозможно пройти через препятствие", gameObject);
             yield break;
