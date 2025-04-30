@@ -19,10 +19,8 @@ public class Robot : MonoBehaviour
     private bool moving;
     private Vector2 direction = Vector2.up;
 
-    public bool Move(Vector3 dir)
+    public bool Move()
     {    
-        direction = dir.normalized;
-
         if (WallInFront) 
         {
             return false;
@@ -30,12 +28,12 @@ public class Robot : MonoBehaviour
 
         IEnumerator _Move()
         {
-            var startPos = transform.position;
+            Vector2 startPos = transform.position;
             float t = 0;
             moving = true;
-            while (transform.position != startPos + dir) 
+            while ((Vector2)transform.position != startPos + direction) 
             {
-                transform.position = Vector3.Lerp(startPos, startPos + dir, t);
+                transform.position = Vector2.Lerp(startPos, startPos + direction, t);
                 t += speed * Time.deltaTime;
                 yield return null;
             }

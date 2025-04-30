@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class MoveBlock : Block
 {
-    [SerializeField] private Vector3 direction;
-
     public override IEnumerator Process(object[] data)
     {
-        if (!Blueprint.Current.Robot.Move(direction)) 
+        if (!Blueprint.Current.Robot.Move()) 
         {
             Blueprint.Current.ErrorMessage("Невозможно пройти через препятствие", gameObject);
             yield break;
