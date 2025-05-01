@@ -29,6 +29,11 @@ public class VariableBlock : Block
     /// </summary>
     public void StopEmitting()
     {
+        if (coroutine == null) 
+        {
+            return;
+        }
+
         StopCoroutine(coroutine);
     }
 
