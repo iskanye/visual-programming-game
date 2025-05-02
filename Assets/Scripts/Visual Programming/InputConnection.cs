@@ -60,6 +60,6 @@ public class InputConnection : MonoBehaviour
     /// </summary>
     public void Destroy()
     {
-        lines.ForEach(i => i.Destroy());
+        new List<ConnectionLine>(lines).ForEach(i => i.Destroy());
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// Базовый класс блока
 /// </summary>
-public class Block : MonoBehaviour, IDragHandler
+public class Block : MonoBehaviour, IDragHandler, IPointerClickHandler
 {
     /// <summary>
     /// Состояние готовности блока к выполнению
@@ -50,8 +50,17 @@ public class Block : MonoBehaviour, IDragHandler
     }
 
     // Перемещение блока
-    public void OnDrag(PointerEventData eventData)
+    public void OnDrag(PointerEventData e)
     {
-        (transform as RectTransform).anchoredPosition += eventData.delta / Blueprint.Current.ScaleFactor;
+        (transform as RectTransform).anchoredPosition += e.delta / Blueprint.Current.ScaleFactor;
+    }
+
+    // Нажатие по блоку
+    public virtual void OnPointerClick(PointerEventData e)
+    {
+        if (e.button == PointerEventData.InputButton.Right) 
+        {
+            Destroy();
+        }
     }
 }
