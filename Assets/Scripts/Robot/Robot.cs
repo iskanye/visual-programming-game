@@ -8,36 +8,32 @@ public class Robot : MonoBehaviour
     { 
         get 
         {
-            var collider = Physics2D.OverlapCircle(transform.position, seeRange, obstacleLayer);
-            if (collider)
-            {
-                var dir = (collider.transform.position - transform.position).normalized;
-                return Mathf.Acos(Vector2.Dot(dir, direction)) * Mathf.Rad2Deg < seeAngle;
-            }
-            return false;
+            var collider = Physics2D.OverlapCircle((Vector2)transform.position + .5f * direction, .4f, obstacleLayer);
+            return collider;
         }
     }
 
     [SerializeField] private float speed;
-    [SerializeField] private float seeRange = 1;
-    [SerializeField] [Range(0, 180)] private float seeAngle = 90;
     [SerializeField] private LayerMask obstacleLayer;
 
     private bool moving;
     private Vector2 direction = Vector2.up;
 
-    public void Move(Vector3 dir)
+    public bool Move()
     {    
-        direction = dir.normalized;
+        if (WallInFront) 
+        {
+            return false;
+        }
 
         IEnumerator _Move()
         {
-            var startPos = transform.position;
+            Vector2 startPos = transform.position;
             float t = 0;
             moving = true;
-            while (transform.position != startPos + dir) 
+            while ((Vector2)transform.position != startPos + direction) 
             {
-                transform.position = Vector3.Lerp(startPos, startPos + dir, t);
+                transform.position = Vector2.Lerp(startPos, startPos + direction, t);
                 t += speed * Time.deltaTime;
                 yield return null;
             }
@@ -45,5 +41,13 @@ public class Robot : MonoBehaviour
         }
 
         StartCoroutine(_Move());
+        return true;
+    }
+
+    public void Rotate(bool clockwise)
+    {
+        direction = new Vector2(
+            (clockwise ? 1 : -1) * direction.y,
+            (clockwise ? -1 : 1) * direction.x);
     }
 }

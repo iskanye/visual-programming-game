@@ -1,5 +1,4 @@
 using System.Collections;
-using System;
 
 public class ConditionalBlock : Block
 {
@@ -19,6 +18,7 @@ public class ConditionalBlock : Block
         {
             output[1].Output(data[0]);
         }
+        
         yield break;
     }
 }

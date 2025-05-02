@@ -33,10 +33,7 @@ public class OutputConnection : MonoBehaviour, IBeginDragHandler, IEndDragHandle
     /// </summary>
     public void Destroy()
     {
-        foreach (var i in connections.Keys) 
-        {
-            i.Destroy();
-        }
+        new List<ConnectionLine>(connections.Keys).ForEach(i => i.Destroy());
     }
 
     /// <summary>

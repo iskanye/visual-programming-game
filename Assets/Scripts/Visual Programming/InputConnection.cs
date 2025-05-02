@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class InputConnection : MonoBehaviour
 {
@@ -32,13 +30,12 @@ public class InputConnection : MonoBehaviour
     /// <summary>
     /// Подсоединён ли какой-либо блок к данному входу?
     /// </summary>
-    public bool Connected { get => connected; }
+    public bool Connected { get => lines.Count != 0; }
 
     [SerializeField] private Block block;
 
     private object data;
     private bool ready;
-    private bool connected;
     private List<ConnectionLine> lines = new();
 
     /// <summary>
@@ -47,7 +44,6 @@ public class InputConnection : MonoBehaviour
     /// <param name="line">Объект линии соединения</param>
     public void Connect(ConnectionLine line)
     {
-        connected = true;
         lines.Add(line);
     }
 
@@ -57,11 +53,6 @@ public class InputConnection : MonoBehaviour
     public void RemoveConnection(ConnectionLine line)
     {
         lines.Remove(line);
-        
-        if (lines.Count == 0) 
-        {
-            connected = false;
-        }
     }
 
     /// <summary>
@@ -69,6 +60,6 @@ public class InputConnection : MonoBehaviour
     /// </summary>
     public void Destroy()
     {
-        lines.ForEach(i => i.Destroy());
+        new List<ConnectionLine>(lines).ForEach(i => i.Destroy());
     }
 }

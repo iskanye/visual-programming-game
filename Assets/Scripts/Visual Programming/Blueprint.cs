@@ -2,6 +2,7 @@ using System.Linq;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Blueprint : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Blueprint : MonoBehaviour
     [SerializeField] private Robot robot;    
     [SerializeField] private float delay = .25f;
     [SerializeField] private TMP_Text messageText;
+    [SerializeField] private Button startButton;
 
     private Block[] blocks;
     private bool isExecuting;
@@ -52,6 +54,8 @@ public class Blueprint : MonoBehaviour
             (i as VariableBlock).StartEmitting();
         }
         StartCoroutine(startBlock.Process(null));
+        
+        startButton.interactable = false;
     }
 
     /// <summary>
@@ -63,13 +67,16 @@ public class Blueprint : MonoBehaviour
         {
             (i as VariableBlock).StopEmitting();
         }
+        
         isExecuting = false;
+        startButton.interactable = true;
     }
 
     /// <summary>
     /// Вывести сообщение на экран
     /// </summary>
     /// <param name="message">Текст сообщения</param>
+    /// <param name="sender">Отправитель сообщения</param>
     public void Message(string message, GameObject sender) 
     {
         IEnumerator _Message() 
@@ -85,5 +92,11 @@ public class Blueprint : MonoBehaviour
     /// Вывести сообщение об ошибке
     /// </summary>
     /// <param name="message">Описание ошибки</param>
-    public void ErrorMessage(string message, GameObject sender) => Message("Ошибка: " + message, sender);
+    /// <param name="sender">Отправитель ошибки</param>
+    public void ErrorMessage(string message, GameObject sender)
+    { 
+        EndExecuting();
+        StopAllCoroutines();
+        Message("Ошибка: " + message, sender);
+    }
 }

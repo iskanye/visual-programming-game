@@ -1,20 +1,24 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class ConnectionLine : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private LineRenderer lineRenderer;
+    [SerializeField] private Image image;
 
     private OutputConnection outputConnection;
     private InputConnection inputConnection;
-    private new PolygonCollider2D collider; //new чтобы vs code не жаловался
-
-    void Awake() 
+    
+    public void CreateLine(Vector2 pos1, Vector2 pos2)
     {
-        collider = gameObject.GetComponent<PolygonCollider2D>();
+        Vector2 midpoint = (pos2 + pos1) / 2f;
+
+        (image.transform as RectTransform).position = midpoint;
+
+        Vector2 dir = pos2 - pos1;
+        (image.transform as RectTransform).rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        (image.transform as RectTransform).localScale = new Vector3(dir.magnitude, 1f, 1f);
     }
 
     void Update()
@@ -22,14 +26,7 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
         Vector2 start = transform.position; // Обязательно указываю Vector2 чтобы координата z обнулялась
         Vector2 end = inputConnection ? inputConnection.transform.position : Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
 
-        lineRenderer.SetPositions(new[] {(Vector3)start, (Vector3)end}); 
-
-        if (inputConnection)  
-        {
-            var scaledLine = (end - start) / transform.lossyScale;
-            var e = .5f * lineRenderer.widthMultiplier * Vector2.Perpendicular(end - start).normalized / transform.lossyScale; 
-            collider.SetPath(0, new Vector2[] {e, scaledLine + e, scaledLine - e, -e});
-        }
+        CreateLine(start, end); 
     }
 
     /// <summary>
