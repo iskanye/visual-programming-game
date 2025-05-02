@@ -3,6 +3,8 @@ using System.Collections;
 
 public class RotateBlock : Block
 {
+    public bool Clockwise { set => clockwise = value; }
+
     [SerializeField] private bool clockwise;
 
     public override IEnumerator Process(object[] data)

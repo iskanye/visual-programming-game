@@ -47,7 +47,7 @@ public class Robot : MonoBehaviour
     public void Rotate(bool clockwise)
     {
         direction = new Vector2(
-            direction.x * Mathf.Cos(Mathf.PI * .5f) - (clockwise ? 1 : -1) * direction.y * Mathf.Sin(Mathf.PI * .5f),
-            (clockwise ? -1 : 1) * direction.x * Mathf.Sin(Mathf.PI * .5f) + direction.y * Mathf.Cos(Mathf.PI * .5f));
+            (clockwise ? 1 : -1) * direction.y,
+            (clockwise ? -1 : 1) * direction.x);
     }
 }
