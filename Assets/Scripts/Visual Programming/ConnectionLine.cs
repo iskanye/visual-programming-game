@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class ConnectionLine : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField] private Image image;
+    [SerializeField] private Transform image;
 
     private OutputConnection outputConnection;
     private InputConnection inputConnection;
@@ -14,11 +13,12 @@ public class ConnectionLine : MonoBehaviour, IPointerClickHandler
     {
         Vector2 midpoint = (pos2 + pos1) / 2f;
 
-        (image.transform as RectTransform).position = midpoint;
+        image.position = midpoint;
 
         Vector2 dir = pos2 - pos1;
-        (image.transform as RectTransform).rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
-        (image.transform as RectTransform).localScale = new Vector3(dir.magnitude, 1f, 1f);
+        image.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
+        image.localScale = new Vector3(dir.magnitude, 1, 1);
+        (image as RectTransform).sizeDelta = new Vector2(Screen.height / 6 / Blueprint.Current.ScaleFactor, 10);
     }
 
     void Update()
