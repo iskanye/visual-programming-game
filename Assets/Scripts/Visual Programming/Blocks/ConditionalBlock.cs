@@ -4,7 +4,7 @@ public class ConditionalBlock : Block
 {
     public override IEnumerator Process(object[] data)
     {
-        if (data[1] is not bool) 
+        if (data[1] is not bool || data[1] == null) 
         {
             Blueprint.Current.ErrorMessage("Невозможно преобразовать к логическому типу", gameObject);
             yield break;
